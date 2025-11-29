@@ -67,11 +67,7 @@ const SignIn = () => {
         <h4 className="fw-semibold text-uppercase">{formHeader.title}</h4>
         <p className="text-gray fs-6">{formHeader.paragraph}</p>
       </div>
-      <FormInputs
-        inputs={inputs}
-        formBtn="Sign In"
-        dataHandle={dataHandle}
-      />
+      <FormInputs inputs={inputs} formBtn="Sign In" dataHandle={dataHandle} />
       <p className="fs-14">
         don't have an account?
         <span

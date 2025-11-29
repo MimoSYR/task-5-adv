@@ -15,6 +15,7 @@ const ProductsPage = () => {
   const products = useLoaderData();
   const navigate = useNavigate();
 
+  const [showNav, setShowNav] = useState(false);
   const [searchInput, setSearchInput] = useState("");
 
   const filteredProducts = useMemo(() => {
@@ -26,6 +27,10 @@ const ProductsPage = () => {
       );
     }
   }, [searchInput, products]);
+
+  const handleShowNav = (show : boolean) => {
+    setShowNav(show);
+  }
 
   const handleDelete = (id: number) => {
     axios
@@ -59,10 +64,10 @@ const ProductsPage = () => {
           </InputGroup>
         </nav>
         <div className="navbar-info postion-relative">
-          <button className="d-lg-none d-block menu-icon btn btn-warning p-1 ms-2">
+          <button onClick={() => handleShowNav(true)} className="d-lg-none d-block menu-icon btn btn-warning p-1 ms-2">
             <img className="" src="/menu.png" alt="" />
           </button>
-          <Navbar />
+          <Navbar handleShowNav={handleShowNav} />
         </div>
       </div>
       {/* add new product */}

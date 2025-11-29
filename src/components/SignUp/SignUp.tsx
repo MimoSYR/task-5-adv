@@ -96,7 +96,7 @@ const SignUp = () => {
   }, [signupData, navigate]);
 
   return (
-    <div className="">
+    <div>
       <Image className="mb-5" src="/logo.png" />
       <div className="form-head mb-5 text-center">
         <h4 className="fw-semibold text-uppercase">{formHeader.title}</h4>

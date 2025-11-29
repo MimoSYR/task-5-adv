@@ -17,10 +17,14 @@
     height: 100vh;
 }
 
+body{
+    height: 100vh;
+}
+
 /* ///////////////////////////////////////////////////////////////////// */
 /* Auth */
 
-.bg-ywellow{
+.bg-yellow{
     background: linear-gradient(71.17deg, #FEAF00 19.35%, #F8D442 90.12%);
 }
 
@@ -198,6 +202,23 @@ img.product-image{
     /* width: 208px; */
     height: 208px;
 }
+
+/* ////////////////////////////////////////////////////////////////// */
+/* product details */
+
+.fs-60{
+    font-size: 50px;
+}
+
+.text-gray{
+    color: #8080808C;
+}
+
+.details img{
+    height: 370px;
+    width: auto;
+}
+
 
 @media(min-width: 1000px){
     .w-search-input{

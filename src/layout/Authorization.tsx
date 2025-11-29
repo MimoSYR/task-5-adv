@@ -12,8 +12,9 @@ const Authorization = () => {
 
   return (
     <div
-      className={`container-fluid py-4 bg-yellow d-flex align-items-center justify-content-center text-center h-100 bg-yellow`}>
-      <div className="form-card">
+      className={`container-fluid bg-yellow d-flex align-items-center justify-content-center text-center`}>
+      <div className="z-n1 h-full "></div>
+      <div className="form-card my-4">
         <Outlet />
       </div>
     </div>

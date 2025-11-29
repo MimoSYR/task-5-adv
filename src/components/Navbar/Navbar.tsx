@@ -3,7 +3,11 @@ import Image from "react-bootstrap/Image";
 import type { UserInfo } from "../../types/interfaces";
 import { useState } from "react";
 
-const Navbar = () => {
+interface NavbarProps {
+    handleShowNav: (show: boolean) => void
+}
+
+const Navbar = ({ handleShowNav } : NavbarProps ) => {
   const navigate = useNavigate();
 
   const navListData = [

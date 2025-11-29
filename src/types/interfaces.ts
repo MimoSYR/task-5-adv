@@ -68,3 +68,8 @@ export interface AddEditFormProps{
   inputs: Array<Input>;
   dataHandle: (data: AddProduct) => void;
 }
+
+export interface ProductDetail{
+  name: string| undefined;
+  value: string | undefined;
+}
