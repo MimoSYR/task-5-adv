@@ -107,6 +107,12 @@ img.profile-image{
     left: 0;
     width: 100vw;
     height: 70vh;
+    transform: translateY(-200vh);
+    transition: all 0.2s;
+}
+
+.navbar-info-nav-show{
+    transform: translateY(0);
 }
 
 .w-search-input{
