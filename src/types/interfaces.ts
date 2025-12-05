@@ -55,7 +55,7 @@ export interface ProductProps{
 
 export interface ProductCardProps{
   product: Product;
-  handleDelete: (id: number) => void;
+  handleShowModal: (id: number) => void;
 }
 
 export interface ProductItem{
@@ -72,4 +72,11 @@ export interface AddEditFormProps{
 export interface ProductDetail{
   name: string| undefined;
   value: string | undefined;
+}
+
+export interface PaginationProps {
+  totalProducts: number;
+  productsPerPage: number;
+  setCurrentPage: (page: number) => void;
+  currentPage:number;
 }

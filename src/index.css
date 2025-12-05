@@ -21,6 +21,11 @@ body{
     height: 100vh;
 }
 
+.warning-hover-text:hover{
+    background-color: var(--bs-warning) !important;
+    color: white;
+}
+
 /* ///////////////////////////////////////////////////////////////////// */
 /* Auth */
 
@@ -78,7 +83,7 @@ img.profile-image{
 }
 
 .w-20{
-    width: 20%;
+    width: 18%;
 }
 
 .logo .w-logo{
@@ -90,7 +95,7 @@ img.profile-image{
 }
 
 .list-group-item.active{
-    background-color: #FEAF00 !important;
+    background-color: var(--bs-warning) !important;
     color: black !important;
 }
 
@@ -219,6 +224,18 @@ img.product-image{
     width: auto;
 }
 
+.delete-modal{
+    backdrop-filter: blur(30px)
+}
+
+/* //////////////////////////////////////////////////////////////////// */
+/* Pagination */
+.pagination-bullet{
+    width: 20px;
+    height: 20px;
+    background: none !important;
+    border: none !important;
+}
 
 @media(min-width: 1000px){
     .w-search-input{

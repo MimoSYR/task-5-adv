@@ -10,6 +10,8 @@ import ProductCard from "../components/ProductCard/ProductCard";
 import { useMemo, useState } from "react";
 import axios from "axios";
 import Navbar from "../components/Navbar/Navbar";
+import Pagination from "../components/Pagination/Pagination";
+import { Modal } from "react-bootstrap";
 
 const ProductsPage = () => {
   const products = useLoaderData();
@@ -17,6 +19,15 @@ const ProductsPage = () => {
 
   const [showNav, setShowNav] = useState(false);
   const [searchInput, setSearchInput] = useState("");
+
+  const [modalShow, setModalShow] = useState(false);
+  const [selectedCardId, setSelectedCardId] = useState<number | null>(null);
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const [productsPerPage, setProductsPerPage] = useState(8);
+
+  const lastPageIndex = currentPage * productsPerPage;
+  const firstPageIndex = lastPageIndex - productsPerPage;
 
   const filteredProducts = useMemo(() => {
     if (!searchInput) {
@@ -28,9 +39,11 @@ const ProductsPage = () => {
     }
   }, [searchInput, products]);
 
-  const handleShowNav = (show : boolean) => {
+  const currentProducts = filteredProducts.slice(firstPageIndex, lastPageIndex);
+
+  const handleShowNav = (show: boolean) => {
     setShowNav(show);
-  }
+  };
 
   const handleDelete = (id: number) => {
     axios
@@ -44,6 +57,15 @@ const ProductsPage = () => {
         console.log(response);
         navigate("/dashboard");
       });
+    setModalShow(false);
+  };
+
+  const handleCloseModal = () => {
+    setModalShow(false);
+  };
+  const handleShowModal = (id: number) => {
+    setModalShow(true);
+    setSelectedCardId(id);
   };
 
   return (
@@ -64,7 +86,9 @@ const ProductsPage = () => {
           </InputGroup>
         </nav>
         <div className="navbar-info postion-relative">
-          <button onClick={() => handleShowNav(true)} className="d-lg-none d-block menu-icon btn btn-warning p-1 ms-2">
+          <button
+            onClick={() => handleShowNav(true)}
+            className="d-lg-none d-block menu-icon btn btn-warning p-1 ms-2">
             <img className="" src="/menu.png" alt="" />
           </button>
           <Navbar handleShowNav={handleShowNav} />
@@ -78,19 +102,56 @@ const ProductsPage = () => {
           </Button>
         </Link>
       </div>
+      {/* delete modal */}
+      <Modal
+        className="delete-modal"
+        show={modalShow}
+        onHide={handleCloseModal}
+        backdrop="static"
+        keyboard={false}
+        size="lg"
+        centered>
+        <Modal.Body className="text-center p-5 rounded-5 text-uppercase text-black">
+          <h4>Are you sure you want to delete the product?</h4>
+          <div className="d-flex justify-content-between w-50 mt-5 mx-auto">
+            <Button
+              size="lg"
+              className="btn-warning text-white fs-3 px-5 rounded-1"
+              onClick={() =>
+                selectedCardId !== null && handleDelete(selectedCardId)
+              }>
+              Yes
+            </Button>
+            <Button
+              size="lg"
+              className="btn-warning text-white  fs-3 px-5 rounded-1"
+              onClick={() => handleCloseModal()}>
+              No
+            </Button>
+          </div>
+        </Modal.Body>
+      </Modal>
       {/* products list */}
       <Row
         xs={1}
         md={2}
         lg={4}
         className="g-4 justify-content-center text-center">
-        {filteredProducts?.map((product: Product) => (
+        {currentProducts.map((product: Product) => (
           <Col key={product.id}>
-            <ProductCard product={product} handleDelete={handleDelete} />
+            <ProductCard product={product} handleShowModal={handleShowModal} />
           </Col>
         ))}
+        {/* pagination */}
+        <Col>
+          <Pagination
+            totalProducts={products.length}
+            productsPerPage={productsPerPage}
+            setCurrentPage={setCurrentPage}
+            currentPage={currentPage}
+          />
+        </Col>
       </Row>
-      {/* pagination */}
     </div>
   );
 };

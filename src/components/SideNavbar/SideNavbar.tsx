@@ -41,7 +41,7 @@ const SideNavbar = () => {
   
 
   return (
-    <div className="d-none d-lg-block position-fixed z-1 h-100 w-20 bg-beige py-4 px-5 d-flex flex-column justify-content-between align-items-center">
+    <div className="d-none d-lg-flex position-fixed z-1 h-100 w-20 bg-beige py-4 px-5 d-flex flex-column justify-content-between align-items-center">
       <div className="d-flex w-100 flex-column justify-content-between align-items-center">
         {/* logo */}
         <div className="logo border-start border-warning border-5 ps-3 mb-5">
@@ -65,7 +65,7 @@ const SideNavbar = () => {
           {navListData.map((item) => (
             <li
               key={item.keyName}
-              className={`list-group-item mb-4 cursor-pointer d-flex justify-content-center align-items-center ${
+              className={`warning-hover-text list-group-item mb-4 cursor-pointer d-flex justify-content-center align-items-center ${
                 item.keyName === "Products" && "active"
               }`}>
               <img src={item.icon} alt="" />
@@ -76,7 +76,7 @@ const SideNavbar = () => {
       </div>
       {/* logout */}
       <div
-        className="d-flex flex-row align-items-center justify-content-center cursor-pointer"
+        className="warning-hover-text w-100 rounded-1 py-2 d-flex flex-row align-items-center justify-content-center cursor-pointer"
         onClick={() => handleLogout()}>
         <p className="mb-0 me-4">Logout</p>
         <img src="/logoutIcon.png" alt="" />

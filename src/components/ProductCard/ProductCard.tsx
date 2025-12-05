@@ -6,7 +6,7 @@ import type { ProductCardProps } from "../../types/interfaces";
 import { useNavigate } from "react-router";
 import { useState } from "react";
 
-const ProductCard = ({ product, handleDelete }: ProductCardProps) => {
+const ProductCard = ({ product, handleShowModal }: ProductCardProps) => {
   const navigate = useNavigate();
   const [currentImageUrl, setCurrentImageUrl] = useState(product.image_url);
   const defaultProductImage = "defaultProductImage.png";
@@ -42,9 +42,10 @@ const ProductCard = ({ product, handleDelete }: ProductCardProps) => {
             Edit
           </Button>
           <Button
+          
             size="sm"
             variant="danger"
-            onClick={() => handleDelete(product.id)}
+            onClick={() => handleShowModal(product.id)}
             className="flex-fill">
             Delete
           </Button>
